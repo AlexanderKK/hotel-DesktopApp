@@ -25,4 +25,4 @@ On every individual frame the user can perform operations with the data displaye
 Data is visualised using tables, comboboxes, textboxes and etc.
 
 
-![image](https://user-images.githubusercontent.com/80641156/111193299-b282d380-85c2-11eb-8c45-9282b9c285ac.png)
+![image](https://user-images.githubusercontent.com/80641156/111193583-f8d83280-85c2-11eb-9c28-d591eb677b74.png)
