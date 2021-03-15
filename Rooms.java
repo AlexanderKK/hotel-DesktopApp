@@ -1,0 +1,1122 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mainPackage;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.text.*;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.table.*;
+import javax.swing.text.*;
+
+/**
+ *
+ * @author ALEX
+ */
+public class Rooms extends javax.swing.JFrame {
+    public DefaultTableModel m;
+    DefaultListModel list = new DefaultListModel();
+    public ArrayList<String> getData = new ArrayList<>();
+    public ArrayList<String> getData1 = new ArrayList<>();
+    public ArrayList<Integer> getDataInt = new ArrayList<>();
+    /**
+     * Creates new form Rooms
+     */
+    public Rooms() {
+        initComponents();
+        m = (DefaultTableModel) jTable2.getModel();
+        this.setResizable(false);
+        this.setTitle("ROOMS");
+        JTableHeader tableHeader = jTable2.getTableHeader();
+        Font HeaderFont = new Font("Felix Titling", Font.BOLD, 14);
+        tableHeader.setFont(HeaderFont);
+        jTable2.getColumnModel().getColumn(0).setMinWidth(0);
+        jTable2.getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable2.getColumnModel().getColumn(0).setWidth(0);
+        
+        jTable2.getColumnModel().getColumn(1).setPreferredWidth(85);
+        jTable2.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable2.getColumnModel().getColumn(3).setPreferredWidth(75);
+        jTable2.getColumnModel().getColumn(4).setPreferredWidth(30);
+        jTable2.getColumnModel().getColumn(5).setPreferredWidth(35);
+        
+        fillTable();
+        fillInsertInfo();
+    }
+    
+    private void fillTable() {
+        getData.clear();
+        m.setRowCount(0);
+        getData = DB_Connection.select(
+        new String[] {"RoomID", "Room_Type", "Room_Number", "Room_View",
+        "Room_State", "Room_Price"}, "Rooms");
+        
+        for (int i = 0; i < getData.size(); i++) {
+            String[] arr = getData.get(i).split("_");
+            m.addRow(new Object[] {
+                arr[0], arr[1], arr[2], arr[3], arr[4], arr[5] + " €"
+            });
+        }
+        
+        getData.clear();  
+    }
+    
+    private void fillInsertInfo() {
+        //Room Type
+        getData.clear();
+        
+        String[] Types = {"Single", "Double", "Studio", "Apartment", "Single Balkony", "Double Balkony", "Studio Balkony", "Apartment Balkony", "Presidential Suite"};
+        
+        //ASC
+//        Arrays.sort(Types);                         
+//        Arrays.toString(Types); 
+        
+        //DESC
+//        Arrays.sort(Types, Collections.reverseOrder()); 
+//        Arrays.toString(Types); 
+        
+        roomType.removeAllItems();
+        roomType1.removeAllItems();
+        
+        roomType.addItem("Pick a Type");
+        roomType1.addItem("Pick a Type");
+        
+        for (int i = 0; i < Types.length; i++) {
+            roomType.addItem(Types[i]);
+            roomType1.addItem(Types[i]);
+        }
+
+        //Room Number
+        roomNumber.setText("");
+        roomNumber1.setText("");
+        
+        //Room View
+        getData.clear();
+        
+        String[] Views = {"Sea & Garden", "Sea", "Garden & Backyard", "Garden", "Backyard"};
+        roomView.removeAllItems();
+        roomView1.removeAllItems();
+        
+        roomView.addItem("Pick a View");
+        roomView1.addItem("Pick a View");
+        
+        for (int i = 0; i < Views.length; i++) {
+            roomView.addItem(Views[i]);
+            roomView1.addItem(Views[i]);
+        }
+        
+        //Room State
+        getData.clear();
+        
+        String[] States = {"Reserved", "Free", "Occupied", "Out of Order"};
+        
+        roomState.removeAllItems();
+        roomState1.removeAllItems();
+        
+        roomState.addItem("Pick a State");
+        roomState1.addItem("Pick a State");
+
+        for (int i = 0; i < States.length; i++) {
+            roomState.addItem(States[i]);
+            roomState1.addItem(States[i]);
+        }
+        
+        //Room Price
+        getData.clear();
+        
+        priceNight.setText("");
+        priceNight1.setText("");
+    }
+    
+    private void fillUpdateInfo() {
+        int row = jTable2.getSelectedRow();
+        
+        roomType1.getModel().setSelectedItem(String.valueOf(m.getValueAt(row, 1)));
+        roomNumber1.setText(String.valueOf(m.getValueAt(row, 2)));
+        roomView1.getModel().setSelectedItem(String.valueOf(m.getValueAt(row, 3)));
+        roomState1.getModel().setSelectedItem(String.valueOf(m.getValueAt(row, 4)));
+        String pricenight = String.valueOf(m.getValueAt(row, 5));
+        String arr[] = pricenight.split(" ");
+        priceNight1.setText(arr[0]);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        PopUpDelete = new javax.swing.JPopupMenu();
+        deleteItem = new javax.swing.JMenuItem();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        priceNight = new javax.swing.JTextField();
+        Insert = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        roomType = new javax.swing.JComboBox<>();
+        roomNumber = new javax.swing.JTextField();
+        roomView = new javax.swing.JComboBox<>();
+        roomState = new javax.swing.JComboBox<>();
+        Update = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        priceNight1 = new javax.swing.JTextField();
+        roomType1 = new javax.swing.JComboBox<>();
+        roomNumber1 = new javax.swing.JTextField();
+        roomView1 = new javax.swing.JComboBox<>();
+        roomState1 = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        Home = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        search = new javax.swing.JMenuItem();
+        add_delete = new javax.swing.JMenuItem();
+        update_delete = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+
+        deleteItem.setText("Delete Room");
+        deleteItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                deleteItemMousePressed(evt);
+            }
+        });
+        PopUpDelete.add(deleteItem);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFont(new java.awt.Font("Felix Titling", 0, 14)); // NOI18N
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
+        jTable2.setAutoCreateRowSorter(true);
+        jTable2.setFont(new java.awt.Font("Felix Titling", 0, 13)); // NOI18N
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Room  ID", "Type", "Number", "View", "State", "Price Per Night"
+            }
+        ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable2MouseReleased(evt);
+            }
+        });
+        jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable2KeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        jLabel15.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel15.setText("Price Per Night");
+
+        jLabel10.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel10.setText("Room Number");
+
+        priceNight.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+
+        Insert.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        Insert.setText("Insert");
+        Insert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsertActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel12.setText("Room View");
+
+        jLabel13.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel13.setText("Room State");
+
+        jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel1.setText("Room Type");
+
+        roomType.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+
+        roomNumber.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+
+        roomView.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+
+        roomState.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+
+        Update.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 18)); // NOI18N
+        Update.setText("Update");
+        Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel14.setText("Room View");
+
+        jLabel16.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel16.setText("Room State");
+
+        jLabel2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel2.setText("Room Type");
+
+        jLabel17.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel17.setText("Price Per Night");
+
+        jLabel11.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel11.setText("Room Number");
+
+        priceNight1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+
+        roomType1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+
+        roomNumber1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+        roomNumber1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                roomNumber1FocusGained(evt);
+            }
+        });
+
+        roomView1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+
+        roomState1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 14)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 22)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 102, 0));
+        jLabel3.setText("Add Room");
+
+        jLabel4.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 22)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 0));
+        jLabel4.setText("Update Room");
+
+        jButton5.setFont(new java.awt.Font("Felix Titling", 1, 14)); // NOI18N
+        jButton5.setText("Go Back");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton5MouseReleased(evt);
+            }
+        });
+
+        jMenuBar1.setFont(new java.awt.Font("Felix Titling", 0, 14)); // NOI18N
+
+        Home.setForeground(new java.awt.Color(98, 98, 98));
+        Home.setText("Main Menu");
+        Home.setFont(new java.awt.Font("Felix Titling", 1, 14)); // NOI18N
+        Home.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HomeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HomeMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                HomeMousePressed(evt);
+            }
+        });
+        jMenuBar1.add(Home);
+
+        jMenu1.setBorder(null);
+        jMenu1.setForeground(new java.awt.Color(98, 98, 98));
+        jMenu1.setText("Reservations");
+        jMenu1.setFont(new java.awt.Font("Felix Titling", 1, 14)); // NOI18N
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jMenu1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jMenu1MouseExited(evt);
+            }
+        });
+
+        search.setFont(new java.awt.Font("Felix Titling", 0, 12)); // NOI18N
+        search.setForeground(new java.awt.Color(98, 98, 98));
+        search.setText("Search");
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                searchMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                searchMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                searchMousePressed(evt);
+            }
+        });
+        jMenu1.add(search);
+
+        add_delete.setFont(new java.awt.Font("Felix Titling", 0, 12)); // NOI18N
+        add_delete.setForeground(new java.awt.Color(98, 98, 98));
+        add_delete.setText("Add & DELETE");
+        add_delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                add_deleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                add_deleteMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                add_deleteMousePressed(evt);
+            }
+        });
+        add_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_deleteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(add_delete);
+
+        update_delete.setFont(new java.awt.Font("Felix Titling", 0, 12)); // NOI18N
+        update_delete.setForeground(new java.awt.Color(98, 98, 98));
+        update_delete.setText("UPDATE & DELETE");
+        update_delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                update_deleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                update_deleteMouseExited(evt);
+            }
+        });
+        update_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_deleteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(update_delete);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setForeground(new java.awt.Color(98, 98, 98));
+        jMenu2.setText("Clients");
+        jMenu2.setFont(new java.awt.Font("Felix Titling", 1, 14)); // NOI18N
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jMenu2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jMenu2MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu2MousePressed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu2);
+
+        jMenu5.setForeground(new java.awt.Color(98, 98, 98));
+        jMenu5.setText("Services");
+        jMenu5.setFont(new java.awt.Font("Felix Titling", 1, 14)); // NOI18N
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jMenu5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jMenu5MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu5MousePressed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu5);
+
+        jMenu4.setForeground(new java.awt.Color(98, 98, 98));
+        jMenu4.setText("Discounts");
+        jMenu4.setFont(new java.awt.Font("Felix Titling", 1, 14)); // NOI18N
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jMenu4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jMenu4MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu4MousePressed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu4);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(roomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(roomView, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(priceNight, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(roomState, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(69, 69, 69))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(jLabel12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(jLabel15)))
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel1))
+                            .addComponent(jLabel3))
+                        .addGap(55, 55, 55)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(245, 245, 245)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(245, 245, 245)
+                        .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel14))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel16))
+                    .addComponent(roomNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(roomState1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(roomView1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(roomType1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel17)
+                                        .addGap(15, 15, 15))
+                                    .addComponent(priceNight1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(roomNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(roomView, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(roomState, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(priceNight, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Insert)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roomType1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roomNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roomView1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roomState1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(priceNight1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        setSize(new java.awt.Dimension(1305, 548));
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
+        // TODO add your handling code here:
+        if(SwingUtilities.isRightMouseButton(evt)) {
+            PopUpDelete.show(evt.getComponent(), evt.getX(), evt.getY());
+            int row = jTable2.rowAtPoint(evt.getPoint());
+            jTable2.setRowSelectionInterval(row, row);
+        }
+    }//GEN-LAST:event_jTable2MousePressed
+
+    private void jTable2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseReleased
+        // TODO add your handling code here:
+        try {
+            fillUpdateInfo();
+        }
+        catch(Exception e) {
+            System.out.println("Initial Click");
+        }
+    }//GEN-LAST:event_jTable2MouseReleased
+
+    private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable2KeyPressed
+        // TODO add your handling code here:
+        try {
+            int keyCode = evt.getKeyCode();
+            if(keyCode == KeyEvent.VK_DELETE && jTable2.getSelectedRow() == -1) {
+                fillInsertInfo();
+                fillTable();
+                JOptionPane.showMessageDialog(this, "You Need To Select an Existing Room", "Operation Failure", 0);
+            }
+
+            else if(keyCode == KeyEvent.VK_DELETE && jTable2.getSelectedRow() != -1) {
+                int result = JOptionPane.showConfirmDialog(this, "Do you wish to continue?\nThis process cannot be undone.", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
+                if(result == 0){
+                    deleteRoom();
+                    fillInsertInfo();
+                    fillTable();
+                    JOptionPane.showMessageDialog(this, "Room Deleted Successfully", "Operation Success", 1);
+                }
+            }
+        }
+        catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jTable2KeyPressed
+
+    private void deleteItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteItemMousePressed
+        // TODO add your handling code here:
+        try {
+            if(jTable2.getSelectedRow() == -1) {
+                fillInsertInfo();
+                fillTable();
+                JOptionPane.showMessageDialog(this, "You Need To Select an Existing Room", "Operation Failure", 0);
+            }
+            if(jTable2.getSelectedRow() != -1) {
+                int result = JOptionPane.showConfirmDialog(this, "Do you wish to continue?\nThis process cannot be undone.", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
+                if(result == 0){
+                    deleteRoom();
+                    fillInsertInfo();
+                    fillTable();
+                    JOptionPane.showMessageDialog(this, "Room Deleted Successfully", "Operation Success", 1);
+                }
+            }
+        }
+        catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_deleteItemMousePressed
+
+    private void InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertActionPerformed
+        // TODO add your handling code here:
+        if(roomType.getSelectedItem().equals("Pick a Type") || roomNumber.getText().isBlank() ||
+            roomView.getSelectedItem().equals("Pick a View") || roomState.getSelectedItem().equals("Pick a State") ||
+            priceNight.getText().isBlank()) {
+
+            JOptionPane.showMessageDialog(this, "Blank Spots Encountered", "Operation Not Successful", 0);
+        }
+        
+        else {
+            try {
+                int roomnumberInt = Integer.parseInt(roomNumber.getText());
+                roomNumber.setText(String.valueOf(roomnumberInt));
+                
+                double value = (double) Math.round(Double.parseDouble(priceNight.getText()) * 100) / 100;
+                priceNight.setText(String.valueOf(value));
+                
+                String roomtype = String.valueOf(roomType.getSelectedItem());
+                String roomnumber = roomNumber.getText();
+                String roomview = String.valueOf(roomView.getSelectedItem());
+                String roomstate = String.valueOf(roomState.getSelectedItem());
+                String pricenight = priceNight.getText();
+
+                getData.clear();
+
+                getData = DB_Connection.selectWhere4(new String[] {"Room_Number"}, new String[]{"Room_Number"}, new String[] {roomnumber}, "Rooms");
+                String existingRN = "";
+                if(!getData.isEmpty()) {
+                    existingRN = getData.get(0);
+                }
+
+                getData.clear();
+
+                if(existingRN.equals(roomnumber)) {
+                    JOptionPane.showMessageDialog(this, "Repeating Room", "Constraint", 0);
+                }
+                else {
+                    String[] columns1 = {"Room_Type", "Room_Number", "Room_View", "Room_State", "Room_Price"};
+                    String[] values1 = {roomtype, roomnumber, roomview, roomstate, pricenight};
+
+                    DB_Connection.insert2(columns1, values1, "Rooms");
+
+                    fillInsertInfo();
+                    fillTable();
+                    JOptionPane.showMessageDialog(this, "Operation Completed Successfully");
+                }
+            }
+            catch (Exception e){
+                JOptionPane.showMessageDialog(this, "Room Number Or Price Not In Correct Format", "Room Number Or Price Constraint", 0);
+            }
+        }
+    }//GEN-LAST:event_InsertActionPerformed
+
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+        // TODO add your handling code here:
+        if(roomType1.getSelectedItem().equals("Pick a Type") ||
+        roomNumber1.getText().isBlank() ||
+        roomView1.getSelectedItem().equals("Pick a View") ||
+        roomState1.getSelectedItem().equals("Pick a State") ||
+        priceNight1.getText().isBlank()) {
+           
+           JOptionPane.showMessageDialog(this, "Blank Spots Encountered", "Operation Not Successful", 0);
+        }
+        else {
+            int row = jTable2.getSelectedRow();
+            
+            try {
+                int roomnumberInt = Integer.parseInt(roomNumber1.getText());
+                roomNumber1.setText(String.valueOf(roomnumberInt));
+                
+                double value = (double) Math.round(Double.parseDouble(priceNight1.getText()) * 100) / 100;
+                priceNight1.setText(String.valueOf(value));
+            
+                String roomtype = String.valueOf(roomType1.getSelectedItem());
+                String roomnumber = roomNumber1.getText();
+                String roomview = String.valueOf(roomView1.getSelectedItem());
+                String roomstate = String.valueOf(roomState1.getSelectedItem());
+                String pricenight = priceNight1.getText();
+
+                getData.clear();
+
+                getData = DB_Connection.selectWhere4(new String[] {"Room_Number"}, new String[]{"Room_Number"}, new String[] {roomnumber}, "Rooms");
+                String existingRN = "";
+                if(!getData.isEmpty()) {
+                    existingRN = getData.get(0);
+                }
+
+                getData.clear();
+
+                String roomID = String.valueOf(m.getValueAt(row, 0));
+                
+                if (roomnumber.equals(String.valueOf(m.getValueAt(row, 2)))){
+                    String[] columns1 = {"Room_Type", "Room_Number", "Room_View", "Room_State", "Room_Price"};
+                    String[] values1 = {roomtype, roomnumber, roomview, roomstate, pricenight};
+
+                    String[] whereColumns1 = {"RoomID"};
+                    String[] whereValues1 = {roomID};
+
+                    DB_Connection.updateString(columns1, values1, whereColumns1, whereValues1, "Rooms");
+
+                    fillInsertInfo();
+                    fillTable();
+                    JOptionPane.showMessageDialog(this, "Operation Completed Successfully"); 
+                }
+                else if(existingRN.equals(roomnumber)) {
+                    JOptionPane.showMessageDialog(this, "Repeating Room", "Constraint", 0);
+                }
+                
+                else {
+                    String[] columns1 = {"Room_Type", "Room_Number", "Room_View", "Room_State", "Room_Price"};
+                    String[] values1 = {roomtype, roomnumber, roomview, roomstate, pricenight};
+
+                    String[] whereColumns1 = {"RoomID"};
+                    String[] whereValues1 = {roomID};
+
+                    DB_Connection.updateString(columns1, values1, whereColumns1, whereValues1, "Rooms");
+
+                    fillInsertInfo();
+                    fillTable();
+                    JOptionPane.showMessageDialog(this, "Operation Completed Successfully"); 
+                }
+                 
+//                if(roomnumber.equals(String.valueOf(m.getValueAt(row, 2)))) {
+    //              if(roomnumber.equals(String.valueOf(m.getValueAt(row, 2)))) {
+                    
+//                }
+//                else if(existingRN.equals(roomnumber)) {
+//                    JOptionPane.showMessageDialog(this, "Repeating Room", "Constraint", 0);
+//                    
+//                }
+                
+            }
+            catch (Exception e){
+                JOptionPane.showMessageDialog(this, "Room Number Or Price Not In Correct Format", "Room Number Or Price Constraint", 0);
+            }
+        }
+
+//                    resetInfo();
+//                    fillTable();
+//                    JOptionPane.showMessageDialog(this, "Operation Completed Successfully");
+//                    
+                    
+    }//GEN-LAST:event_UpdateActionPerformed
+
+    private void roomNumber1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_roomNumber1FocusGained
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_roomNumber1FocusGained
+
+    private void HomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMouseEntered
+        // TODO add your handling code here:
+        Home.setForeground(new Color(172, 165, 31));
+
+        jMenu1.setForeground(new Color(98, 98, 98));
+        jMenu2.setForeground(new Color(98, 98, 98));
+        jMenu4.setForeground(new Color(98, 98, 98));
+        jMenu5.setForeground(new Color(98, 98, 98));
+    }//GEN-LAST:event_HomeMouseEntered
+
+    private void HomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMouseExited
+        // TODO add your handling code here:
+        if(!Home.isSelected()) {
+            Home.setForeground(new Color(98, 98, 98));
+        }
+    }//GEN-LAST:event_HomeMouseExited
+
+    private void HomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMousePressed
+        // TODO add your handling code here:
+        Main_Menu Menu = new Main_Menu();
+        this.dispose();
+        Menu.setVisible(true);
+    }//GEN-LAST:event_HomeMousePressed
+
+    private void add_deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_deleteMouseEntered
+        // TODO add your handling code here:
+        add_delete.setForeground(new Color(172, 165, 31));
+    }//GEN-LAST:event_add_deleteMouseEntered
+
+    private void add_deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_deleteMouseExited
+        // TODO add your handling code here:
+        add_delete.setForeground(new Color(98, 98, 98));
+    }//GEN-LAST:event_add_deleteMouseExited
+
+    private void add_deleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_deleteMousePressed
+        // TODO add your handling code here:
+        this.dispose();
+        new Reservations_Add_Delete().setVisible(true);
+    }//GEN-LAST:event_add_deleteMousePressed
+
+    private void add_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_deleteActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new Reservations_Add_Delete().setVisible(true);
+    }//GEN-LAST:event_add_deleteActionPerformed
+
+    private void searchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseEntered
+        // TODO add your handling code here:
+        search.setForeground(new Color(172, 165, 31));
+    }//GEN-LAST:event_searchMouseEntered
+
+    private void searchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseExited
+        // TODO add your handling code here:
+        search.setForeground(new Color(98, 98, 98));
+    }//GEN-LAST:event_searchMouseExited
+
+    private void searchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMousePressed
+        // TODO add your handling code here:
+        Reservations_Search Search = new Reservations_Search();
+        this.dispose();
+        Search.setVisible(true);
+    }//GEN-LAST:event_searchMousePressed
+
+    private void update_deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_deleteMouseEntered
+        // TODO add your handling code here:
+        update_delete.setForeground(new Color(172, 165, 31));
+    }//GEN-LAST:event_update_deleteMouseEntered
+
+    private void update_deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_deleteMouseExited
+        // TODO add your handling code here:
+        update_delete.setForeground(new Color(98, 98, 98));
+    }//GEN-LAST:event_update_deleteMouseExited
+
+    private void update_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_deleteActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new Reservations_Update_Delete().setVisible(true);
+    }//GEN-LAST:event_update_deleteActionPerformed
+
+    private void jMenu1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseEntered
+        // TODO add your handling code here:
+        jMenu1.setForeground(new Color(172, 165, 31));
+
+        Home.setForeground(new Color(98, 98, 98));
+        jMenu2.setForeground(new Color(98, 98, 98));
+        jMenu4.setForeground(new Color(98, 98, 98));
+        jMenu5.setForeground(new Color(98, 98, 98));
+    }//GEN-LAST:event_jMenu1MouseEntered
+
+    private void jMenu1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseExited
+        // TODO add your handling code here:
+        if(!jMenu1.isSelected()) {
+            jMenu1.setForeground(new Color(98, 98, 98));
+        }
+    }//GEN-LAST:event_jMenu1MouseExited
+
+    private void jMenu2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseEntered
+        // TODO add your handling code here:
+        jMenu2.setForeground(new Color(172, 165, 31));
+
+        Home.setForeground(new Color(98, 98, 98));
+        jMenu1.setForeground(new Color(98, 98, 98));
+        jMenu4.setForeground(new Color(98, 98, 98));
+        jMenu5.setForeground(new Color(98, 98, 98));
+    }//GEN-LAST:event_jMenu2MouseEntered
+
+    private void jMenu2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseExited
+        // TODO add your handling code here:
+        if(!jMenu2.isSelected()) {
+            jMenu2.setForeground(new Color(98, 98, 98));
+        }
+    }//GEN-LAST:event_jMenu2MouseExited
+
+    private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
+        // TODO add your handling code here:
+        this.dispose();
+        new Clients_Add_Update_Delete().setVisible(true);
+    }//GEN-LAST:event_jMenu2MousePressed
+
+    private void jMenu5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseEntered
+        // TODO add your handling code here:
+        jMenu5.setForeground(new Color(172, 165, 31));
+
+        Home.setForeground(new Color(98, 98, 98));
+        jMenu1.setForeground(new Color(98, 98, 98));
+        jMenu2.setForeground(new Color(98, 98, 98));
+        jMenu4.setForeground(new Color(98, 98, 98));
+    }//GEN-LAST:event_jMenu5MouseEntered
+
+    private void jMenu5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseExited
+        // TODO add your handling code here:
+        if(!jMenu5.isSelected()) {
+            jMenu5.setForeground(new Color(98, 98, 98));
+        }
+    }//GEN-LAST:event_jMenu5MouseExited
+
+    private void jMenu5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MousePressed
+        // TODO add your handling code here:
+        this.dispose();
+        new Services().setVisible(true);
+    }//GEN-LAST:event_jMenu5MousePressed
+
+    private void jMenu4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseEntered
+        // TODO add your handling code here:
+        jMenu4.setForeground(new Color(172, 165, 31));
+
+        Home.setForeground(new Color(98, 98, 98));
+        jMenu1.setForeground(new Color(98, 98, 98));
+        jMenu2.setForeground(new Color(98, 98, 98));
+        jMenu5.setForeground(new Color(98, 98, 98));
+    }//GEN-LAST:event_jMenu4MouseEntered
+
+    private void jMenu4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseExited
+        // TODO add your handling code here:
+        if(!jMenu4.isSelected()) {
+            jMenu4.setForeground(new Color(98, 98, 98));
+        }
+    }//GEN-LAST:event_jMenu4MouseExited
+
+    private void jMenu4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MousePressed
+        // TODO add your handling code here:
+        this.dispose();
+        new Discounts().setVisible(true);
+    }//GEN-LAST:event_jMenu4MousePressed
+
+    private void jButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseReleased
+        // TODO add your handling code here:
+        Main_Menu Menu = new Main_Menu();
+        this.dispose();
+        Menu.setVisible(true);
+    }//GEN-LAST:event_jButton5MouseReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(this, "Do you wish to continue?", "Exit", JOptionPane.YES_NO_OPTION);
+        if(result == 0){
+            this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        }
+        else {
+            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        }
+    }//GEN-LAST:event_formWindowClosing
+    
+    private void deleteRoom() {
+        int row = jTable2.getSelectedRow();
+        String roomID = String.valueOf(m.getValueAt(row, 0));
+
+        //Reservations Deletion
+        getData.clear();
+
+        //Get Reservations ID
+        String[] columns1 = {"Reservation_ID"};
+        String[] whereColumns1 = {"RoomID"};
+        String[] whereValues1 = {roomID};
+        String table1 = "Rooms_Reservations";
+        getData = DB_Connection.selectWhere3(columns1, whereColumns1, whereValues1, table1);
+
+        for (int i = 0; i < getData.size(); i++) {
+            String resID = getData.get(i);
+
+            //Delete Reservations by RoomID
+            String[] whereColumns2 = {"Reservation_ID", "RoomID"};
+            String[] whereValues2 = {resID, roomID};
+            String table2 = "Rooms_Reservations";
+            DB_Connection.delete(whereColumns2, whereValues2, table2);
+        }
+
+        getData.clear();
+
+        //Room Deletion
+        String[] whereColumns5 = {"RoomID"};
+        String[] whereValues5 = {roomID};
+        String table5 = "Rooms";
+        DB_Connection.delete(whereColumns5, whereValues5, table5);
+
+        getData.clear();
+        getData1.clear();
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Rooms.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Rooms.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Rooms.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Rooms.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Rooms().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Home;
+    private javax.swing.JButton Insert;
+    private javax.swing.JPopupMenu PopUpDelete;
+    private javax.swing.JButton Update;
+    private javax.swing.JMenuItem add_delete;
+    private javax.swing.JMenuItem deleteItem;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField priceNight;
+    private javax.swing.JTextField priceNight1;
+    private javax.swing.JTextField roomNumber;
+    private javax.swing.JTextField roomNumber1;
+    private javax.swing.JComboBox<String> roomState;
+    private javax.swing.JComboBox<String> roomState1;
+    private javax.swing.JComboBox<String> roomType;
+    private javax.swing.JComboBox<String> roomType1;
+    private javax.swing.JComboBox<String> roomView;
+    private javax.swing.JComboBox<String> roomView1;
+    private javax.swing.JMenuItem search;
+    private javax.swing.JMenuItem update_delete;
+    // End of variables declaration//GEN-END:variables
+}
