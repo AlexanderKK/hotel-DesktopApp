@@ -23,3 +23,5 @@ The user enters the application using the expected administrator credentials and
 The main menu contains summarised information about reservations, clients and rooms.
 On every individual frame the user can perform operations with the data displayed on the window.
 Data is visualised using tables, comboboxes, textboxes and etc.
+
+![image](https://user-images.githubusercontent.com/80641156/111192856-35eff500-85c2-11eb-9339-c2422768127b.png)
