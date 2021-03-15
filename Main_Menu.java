@@ -89,7 +89,7 @@ public class Main_Menu extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Felix Titling", 1, 35)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(145, 140, 39));
-        jLabel1.setText("Summarized Data");
+        jLabel1.setText("Summarised Data");
 
         jLabel5.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(172, 165, 31));
