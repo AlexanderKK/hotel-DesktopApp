@@ -24,4 +24,5 @@ The main menu contains summarised information about reservations, clients and ro
 On every individual frame the user can perform operations with the data displayed on the window.
 Data is visualised using tables, comboboxes, textboxes and etc.
 
-![image](https://user-images.githubusercontent.com/80641156/111192856-35eff500-85c2-11eb-9339-c2422768127b.png)
+
+![image](https://user-images.githubusercontent.com/80641156/111193299-b282d380-85c2-11eb-8c45-9282b9c285ac.png)
