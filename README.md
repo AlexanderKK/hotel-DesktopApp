@@ -1,9 +1,9 @@
 # Introduction
 
-* This project is focused on the development of an application hotel administrators can use.
-* Its goal is speeding up, simplifying the work of the receptionist and managing tasks more efficiently.
-* Basic data operations are possible like adding, saving, updating and deleting.
-* The app works with SQLite database.
+This project is focused on the development of an application hotel administrators can use.
+Its goal is speeding up, simplifying the work of the receptionist and managing tasks more efficiently.
+Basic data operations are possible like adding, saving, updating and deleting.
+The app works with SQLite database.
 
 ## Overview
 
