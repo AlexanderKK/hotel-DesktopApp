@@ -1,9 +1,9 @@
 # Introduction
 
 This project is focused on the development of an application hotel administrators can use.\
-Its goal is speeding up, simplifying the work of the receptionist and managing tasks more efficiently.\
+Its goal is speeding up the operation process, simplifying the work of receptionists and managing tasks more efficiently.\
 Basic data operations are possible like adding, saving, updating and deleting.\
-The app is created on Apache NetBeans IDE and works with SQLite database.
+The app is created using Apache NetBeans IDE and works with SQLite database.
 
 ## Overview
 
@@ -24,6 +24,9 @@ The main menu contains summarised information about reservations, clients and ro
 On every individual frame the user can perform operations with the data displayed on the window.\
 Data is visualised using tables, comboboxes, textboxes and etc.\
 There are 10 uploaded java files where 9 are for the frames and 1 (DBConnection.java) is used for the connection, making statements and getting query results from the database.\
+
+
+
 Here are some images of the hotel app.
 
 ## Authorization
