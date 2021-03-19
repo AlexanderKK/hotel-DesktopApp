@@ -27,7 +27,7 @@ There are 10 uploaded java files where 9 are for the frames and 1 (DBConnection.
 
 
 
-Here are some images of the hotel app.
+Here are some images of the hotel app:
 
 ## Authorization
 ![image](https://user-images.githubusercontent.com/80641156/111791781-37743280-88cc-11eb-9fd1-8c8205d8c1e6.png)
