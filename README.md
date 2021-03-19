@@ -36,16 +36,19 @@ Data is visualised using tables, comboboxes, textboxes and etc.
 
 ## Reservations
 * Search
+
 ![image](https://user-images.githubusercontent.com/80641156/111793869-5bd10e80-88ce-11eb-8d3b-653860cc0e0a.png)
 
 
 * Add & Delete
+
 ![image](https://user-images.githubusercontent.com/80641156/111795061-866f9700-88cf-11eb-956a-2584616c9ba0.png)
 
 ![image](https://user-images.githubusercontent.com/80641156/111795256-ae5efa80-88cf-11eb-8c7b-1f950b6b5c3b.png)
 
 
 * Update & Delete
+
 ![image](https://user-images.githubusercontent.com/80641156/111795703-1f061700-88d0-11eb-8bf9-eb5fdc8db8b8.png)
 
 ![image](https://user-images.githubusercontent.com/80641156/111795834-39d88b80-88d0-11eb-949d-6db94a89ce0e.png)
