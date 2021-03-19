@@ -23,6 +23,8 @@ The user enters the application using the expected administrator credentials and
 The main menu contains summarised information about reservations, clients and rooms.
 On every individual frame the user can perform operations with the data displayed on the window.
 Data is visualised using tables, comboboxes, textboxes and etc.
+There are 10 uploaded java files where 9 are for the frames and 1 (DBConnection.java) is used for the connection, making statements and getting query results from the database.
+Here are some images of the hotel app.
 
 ## Authorization
 ![image](https://user-images.githubusercontent.com/80641156/111791781-37743280-88cc-11eb-9fd1-8c8205d8c1e6.png)
