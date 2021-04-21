@@ -19,11 +19,11 @@ The application consists of 9 different frames:
 * Services
 * Discounts
 
-The user enters the application using the expected administrator credentials and then is sent to the main menu.\
-The main menu contains summarised information about reservations, clients and rooms.\
-On every individual frame the user can perform operations with the data displayed on the window.\
-Data is visualised using tables, comboboxes, textboxes and etc.\
-There are 10 uploaded java files where 9 are for the frames and 1 (DBConnection.java) is used for the connection, making statements and getting query results from the database.\
+The user enters the application using the expected administrator credentials and then is sent to the main menu.
+The main menu contains summarised information about reservations, clients and rooms.
+On every individual frame the user can perform operations with the data displayed on the window.
+Data is visualised using tables, comboboxes, textboxes and etc.
+There are 10 uploaded java files where 9 are for the frames and 1 (DBConnection.java) is used for the connection, making statements and getting query results from the database.
 
 
 
