@@ -1,6 +1,6 @@
 # This project is created for academic purposes
 
-# Introduction
+## Introduction
 
 This project is focused on the development of an application hotel administrators can use.\
 Its goal is speeding up the operation process, simplifying the work of receptionists and managing tasks more efficiently.\
