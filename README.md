@@ -1,3 +1,5 @@
+# This project is created for academic purposes
+
 # Introduction
 
 This project is focused on the development of an application hotel administrators can use.\
