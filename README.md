@@ -1,4 +1,4 @@
-# This project is created for academic purposes
+# Created for academic purposes
 
 ## Introduction
 
